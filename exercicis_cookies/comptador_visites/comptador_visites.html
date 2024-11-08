@@ -1,44 +1,51 @@
+<?php
+session_start();
+
+// Inicialitzar el comptador de visites si no existeix
+if (!isset($_SESSION['visites'])) {
+    $_SESSION['visites'] = 0;
+}
+
+// Incrementar el comptador de visites
+$_SESSION['visites']++;
+
+// Calcular descompte en funció del nombre de visites
+$descompte = 0;
+if ($_SESSION['visites'] >= 10) {
+    $descompte = 50;
+} elseif ($_SESSION['visites'] >= 5) {
+    $descompte = 20;
+}
+
+// Si l'usuari aplica el descompte i fa la compra
+$preu_producte = 100; // Preu base del producte
+$preu_final = $preu_producte;
+if (isset($_POST['aplica_descompte']) && $descompte > 0) {
+    $preu_final = $preu_producte - ($preu_producte * ($descompte / 100));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comptador de Visites</title>
+    <title>Pàgina del Producte</title>
 </head>
 <body>
 
-<h1>Benvingut a la nostra botiga!</h1>
+<h1>Compra del Producte</h1>
 
-<!-- Mostrar el comptador de visites -->
-<p>Visites actuals: <span id="comptador">
-    <?php 
-        session_start();
-        
-        // Si és la primera visita, inicialitzar el comptador
-        if (!isset($_SESSION['visites'])) {
-            $_SESSION['visites'] = 1;
-        } else {
-            $_SESSION['visites']++;
-        }
+<p>Nombre de visites: <?php echo $_SESSION['visites']; ?></p>
 
-        // Mostrar el nombre de visites
-        echo $_SESSION['visites'];
-    ?>
-</span></p>
+<?php if ($descompte > 0): ?>
+    <p>Felicitats! Tens un descompte del <?php echo $descompte; ?>% en la teva compra.</p>
+<?php endif; ?>
 
-<!-- Missatges de descompte segons el nombre de visites -->
-<?php
-    if ($_SESSION['visites'] >= 10) {
-        echo "<p>Oferta exclusiva sols per a tu! Utilitza el codi <strong>BOTIGA50</strong> per obtenir un 50% de descompte en les teves primeres compres a la botiga</p>";
-    } elseif ($_SESSION['visites'] >= 5) {
-        echo "<p>Oferta exclusiva! Utilitza el codi <strong>BOTIGA20</strong> per obtenir un 20% de descompte en les teves primeres compres a la botiga</p>";
-    }
-?>
-
-<!-- Formulari de compra -->
-<form method="post" action="comptador_visites.php">
-    <label for="compra">Vols comprar alguna cosa? </label>
-    <button type="submit" name="compra">Comprar</button>
+<form method="POST">
+    <p>Preu original: <?php echo $preu_producte; ?>€</p>
+    <p>Preu final amb descompte aplicat: <?php echo $preu_final; ?>€</p>
+    <input type="hidden" name="aplica_descompte" value="1">
+    <button type="submit">Comprar amb Descompte</button>
 </form>
 
 </body>
