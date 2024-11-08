@@ -9,19 +9,23 @@ if (!isset($_SESSION['visites'])) {
 // Incrementar el comptador de visites
 $_SESSION['visites']++;
 
-// Calcular descompte en funció del nombre de visites
+// Calcular el descompte en funció del nombre de visites
 $descompte = 0;
 if ($_SESSION['visites'] >= 10) {
-    $descompte = 50;
+    $descompte = 50; // Descompte del 50% després de 10 visites
 } elseif ($_SESSION['visites'] >= 5) {
-    $descompte = 20;
+    $descompte = 20; // Descompte del 20% després de 5 visites
 }
 
-// Si l'usuari aplica el descompte i fa la compra
-$preu_producte = 100; // Preu base del producte
+// Preu base del producte
+$preu_producte = 100;
 $preu_final = $preu_producte;
-if (isset($_POST['aplica_descompte']) && $descompte > 0) {
-    $preu_final = $preu_producte - ($preu_producte * ($descompte / 100));
+
+// Aplicar descompte quan l'usuari clica per comprar
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
+    if ($descompte > 0) {
+        $preu_final = $preu_producte - ($preu_producte * ($descompte / 100));
+    }
 }
 ?>
 
@@ -29,7 +33,7 @@ if (isset($_POST['aplica_descompte']) && $descompte > 0) {
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <title>Pàgina del Producte</title>
+    <title>Compra del Producte</title>
 </head>
 <body>
 
@@ -44,8 +48,7 @@ if (isset($_POST['aplica_descompte']) && $descompte > 0) {
 <form method="POST">
     <p>Preu original: <?php echo $preu_producte; ?>€</p>
     <p>Preu final amb descompte aplicat: <?php echo $preu_final; ?>€</p>
-    <input type="hidden" name="aplica_descompte" value="1">
-    <button type="submit">Comprar amb Descompte</button>
+    <button type="submit" name="comprar">Comprar amb Descompte</button>
 </form>
 
 </body>
