@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botiga de Manuel</title>
+</head>
+<body>
+    <h1>Benvingut a la botiga!</h1>
+    <form action="cistella_compra.php" method="post">
+        <h2>Pilota de futbol</h2>
+        <p>Preu: 57€</p>
+        <label for="quantitat_pilota">Quantitat</label>
+        <input type="number" id="quantitat_pilota" name="quantitat_pilota" min="0"><br><br>
+
+        <h2>Samarreta del Barça</h2>
+        <p>Preu: 115€</p>
+        <label for="quantitat_samarreta">Quantitat</label>
+        <input type="number" id="quantitat_samarreta" name="quantitat_samarreta" min="0"><br><br>
+
+        <button type="submit" name="afegir">Afegir a la cistella</button>
+    </form>
+
+    <br>
+    <a href="resum_compra.php">Finalitzar compra</a>
+</body>
+</html>
