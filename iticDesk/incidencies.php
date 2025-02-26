@@ -13,9 +13,8 @@ $result = mysqli_query($conn, $sql);
 <head>
     <title>Llistat de totes les Incidències</title>
 </head>
+<a href="acces.php">Tornar a l'inici</a>
 <body>
-
-    <a href="acces.php">Tornar a l'inici</a>
 
     <h1>Llistat d'incidències</h1>
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>

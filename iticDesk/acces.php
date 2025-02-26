@@ -19,10 +19,10 @@ $rol = $_SESSION['user_role'];
 
 <body>
 
-    <h1> Hola, <?php echo $user_email; ?> benvingut!!   </h1>
+    <h1>Hola <?php echo $user_email; ?> benvingut!!   </h1>
     <h3><p>Rol d'aquest usuari -> <?php echo $rol; ?></p></h3>
 
-    <h2>Opcions de les incidències</h2>
+    <h2>Gestió de les incidències</h2>
 
     <li><a href="registre_incidencies.php">Informar nova incidència</a></li>
     <li><a href="incidencies.php">Llistat d'incidències</a></li>

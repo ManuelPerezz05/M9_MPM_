@@ -2,7 +2,7 @@
 session_start();
 $conn = mysqli_connect('localhost', 'manuel', 'manuel', 'manuel_perez_iticdesk');
 if (!$conn) {
-    die("Error al intentar conectarse a la base de datos.");
+    die("Error!!!! al intentar conectarse a la base de datos");
 }
 if (isset($_POST['user_log'])) {
     $user = $_POST['user_log'];
