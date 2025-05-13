@@ -1,14 +1,14 @@
+<!-- Usuario introduce un año-->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title>Consulta pel·lícules</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1-0">
-    <title>Document</title>
 </head>
-<body>
-    <form action="./informe_professor.php" method="get">
-        <input type="number" max="9" min="0" name="nota" id="">
-        <button type="submit">Consultar_notes</button>
+    <form action="query.php" method="POST">
+        <label>Introdueix un any:</label>
+        <input type="number" name="any" required>
+        <input type="submit" value="Cercar">
     </form>
 </body>
 </html>
